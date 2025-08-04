@@ -18,16 +18,19 @@
             background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
             min-height: 100vh;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
             padding: 20px;
+            text-align: center;
         }
 
         header {
-            text-align: center;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 30px;
@@ -52,6 +55,14 @@
             font-size: 2.5em;
             margin-bottom: 10px;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1::before {
+            content: "📚";
+            margin-right: 10px;
         }
 
         .subtitle {
@@ -66,6 +77,7 @@
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         .nav-btn {
@@ -74,10 +86,15 @@
             border: none;
             padding: 12px 25px;
             border-radius: 20px;
-            cursor: pointer;
             font-size: 1.1em;
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            pointer-events: auto;
+            opacity: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
@@ -86,6 +103,14 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
+
+        .nav-btn::before {
+            margin-right: 8px;
+        }
+
+        .nav-btn[data-section="learn"]::before { content: "📚"; }
+        .nav-btn[data-section="quiz"]::before { content: "🎯"; }
+        .nav-btn[data-section="facts"]::before { content: "💡"; }
 
         .section {
             background: rgba(255, 255, 255, 0.95);
@@ -119,13 +144,7 @@
             padding: 25px;
             border-radius: 10px;
             text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .vocab-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            pointer-events: none;
         }
 
         .vocab-english {
@@ -217,7 +236,7 @@
         }
 
         .score {
-            background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
             padding: 20px;
             border-radius: 10px;
             margin: 20px 0;
@@ -281,6 +300,7 @@
             margin: 20px 0;
             border-left: 5px solid #2c3e50;
             font-family: 'Poppins', sans-serif;
+            pointer-events: none;
         }
 
         .fun-fact h3 {
@@ -331,6 +351,24 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .footer-info {
+            max-width: 960px;
+            margin: 30px auto 60px auto;
+            padding: 0 40px;
+            color: #ecf0f1;
+            text-align: center;
+        }
+
+        .footer-info p {
+            font-size: 16px;
+            margin: 6px 0;
+            line-height: 1.5;
+        }
+
+        .footer-info p em {
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -339,15 +377,15 @@
             <h1>Let's Learn English!</h1>
             <p class="subtitle">Mari belajar Bahasa Inggris dengan cara yang menyenangkan!</p>
             <div class="nav-buttons">
-                <button class="nav-btn" onclick="showSection('learn')">Belajar Vocabulary</button>
-                <button class="nav-btn" onclick="showSection('quiz')">Quiz</button>
-                <button class="nav-btn" onclick="showSection('facts')">Tips Belajar</button>
+                <button class="nav-btn" data-section="learn" onclick="showSection('learn')">Belajar Vocabulary</button>
+                <button class="nav-btn" data-section="quiz" onclick="showSection('quiz')">Quiz</button>
+                <button class="nav-btn" data-section="facts" onclick="showSection('facts')">Tips Belajar</button>
             </div>
         </header>
 
         <!-- Section Pembelajaran -->
         <div id="learn" class="section active">
-            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 700;">English Vocabulary for Kids</h2>
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 700;">📚 English Vocabulary for Kids</h2>
             
             <!-- Kategori Perkenalan Diri -->
             <div class="category-section">
@@ -399,7 +437,7 @@
         <!-- Section Quiz -->
         <div id="quiz" class="section">
             <div class="quiz-container">
-                <h2 style="color: #2c3e50; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 700;">English Quiz</h2>
+                <h2 style="color: #2c3e50; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 700;">🎯 English Quiz</h2>
                 <div class="score">
                     <p>Score: <span id="score">0</span> | Question: <span id="question-number">1</span>/<span id="total-question">10</span></p>
                 </div>
@@ -420,21 +458,21 @@
                             <span class="option-text">Goodbye</span>
                         </button>
                     </div>
-                    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question</button>
+                    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question ➡️</button>
                 </div>
 
                 <div class="congratulations" id="congratulations">
-                    <h2>Congratulations!</h2>
+                    <h2>🎉 Congratulations!</h2>
                     <p>You have completed the quiz!</p>
                     <p id="final-score"></p>
-                    <button class="next-btn" style="display: inline-block;" onclick="restartQuiz()">Play Again</button>
+                    <button class="next-btn" style="display: inline-block;" onclick="restartQuiz()">🔄 Play Again</button>
                 </div>
             </div>
         </div>
 
         <!-- Section Tips Belajar -->
         <div id="facts" class="section">
-            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 700;">Tips Belajar Bahasa Inggris</h2>
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 700;">💡 Tips Belajar Bahasa Inggris</h2>
             
             <div class="fun-fact">
                 <h3>Perkenalkan Diri</h3>
@@ -461,6 +499,14 @@
                 <p>Coba game mencocokkan kata seperti "Head" dengan "Kepala" untuk membuat belajar lebih seru!</p>
             </div>
         </div>
+    </div>
+
+    <div class="footer-info">
+        <p>Dipersembahkan dari Prodi Sistem Informasi Non Reguler (Kelas Karyawan) – Ma'soem University</p>
+        <p>Media Pembelajaran Bahasa Inggris di SDN 1 Narawita</p>
+        <p>bersama Prodi Bahasa Inggris Non Reguler (Kelas Karyawan)</p>
+        <p>KKN Kelompok 17 – Desa Narawita, Kec. Cicalengka</p>
+        <p><em>Oleh: Andri Anugrah</em></p>
     </div>
 
     <script>
@@ -677,50 +723,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             loadQuestion();
-            
-            const vocabCards = document.querySelectorAll('.vocab-card');
-            vocabCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = 'scale(1.05)';
-                        setTimeout(() => {
-                            this.style.transform = 'scale(1)';
-                        }, 100);
-                    }, 100);
-                    
-                    console.log('Vocabulary card clicked:', this.querySelector('.vocab-english').textContent);
-                });
-            });
         });
     </script>
 </body>
-<div class="footer-info">
-  <p>Dipersembahkan dari Prodi Sistem Informasi Non Reguler (Kelas Karyawan) – Ma'soem University</p>
-  <p>Media Pembelajaran Bahasa Inggris di SDN 1 Narawita</p>
-  <p>bersama Prodi Bahasa Inggris Non Reguler (Kelas Karyawan)</p>
-  <p>KKN Kelompok 17 – Desa Narawita, Kec. Cicalengka</p>
-  <p><em>Oleh: Andri Anugrah</em></p>
-</div>
-
-<style>
-  .footer-info {
-    max-width: 960px; /* disamakan dengan lebar konten utama (kotak putih) */
-    margin: 30px auto 60px auto; /* jarak atas-bawah lebih proporsional */
-    padding: 0 40px; /* biar gak nempel ke kiri-kanan */
-    color: #ecf0f1; /* warna teks diganti agar tidak tabrakan dengan background */
-  }
-
-  .footer-info p {
-    font-size: 16px;
-    margin: 6px 0;
-    line-height: 1.5;
-  }
-
-  .footer-info p em {
-    font-style: italic;
-  }
-</style>
-
 </html>
-
