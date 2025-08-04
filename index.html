@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Bahasa Inggris - Untuk Anak SD Kelas 4 sampai 6</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #555;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            display: none;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .vocab-card {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .vocab-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .vocab-english {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .vocab-indonesian {
+            font-size: 1.2em;
+            font-weight: 400;
+            opacity: 0.9;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .quiz-container {
+            text-align: center;
+        }
+
+        .question {
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100px;
+            justify-content: center;
+        }
+
+        .option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .option.correct {
+            background: linear-gradient(45deg, #27ae60, #219653);
+            animation: correctAnswer 0.6s ease;
+        }
+
+        .option.wrong {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            animation: wrongAnswer 0.6s ease;
+        }
+
+        @keyframes correctAnswer {
+            0%, 50%, 100% { transform: scale(1); }
+            25%, 75% { transform: scale(1.05); }
+        }
+
+        @keyframes wrongAnswer {
+            0%, 50%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .option-text {
+            font-size: 1em;
+            text-align: center;
+            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .score {
+            background: linear-gradient(45deg, #ecf0f1, #bdc3c7);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.3em;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+
+        .next-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            margin: 10px;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .congratulations {
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            display: none;
+            animation: celebration 1s ease;
+        }
+
+        .congratulations h2 {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .congratulations p {
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        @keyframes celebration {
+            0%, 50%, 100% { transform: scale(1); }
+            25%, 75% { transform: scale(1.05); }
+        }
+
+        .fun-fact {
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #2c3e50;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .fun-fact h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .fun-fact p {
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .vocab-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Let's Learn English!</h1>
+            <p class="subtitle">Mari belajar Bahasa Inggris dengan cara yang menyenangkan!</p>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="showSection('learn')">Belajar Vocabulary</button>
+                <button class="nav-btn" onclick="showSection('quiz')">Quiz</button>
+                <button class="nav-btn" onclick="showSection('facts')">Tips Belajar</button>
+            </div>
+        </header>
+
+        <!-- Section Pembelajaran -->
+        <div id="learn" class="section active">
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 700;">English Vocabulary for Kids</h2>
+            
+            <!-- Kategori Perkenalan Diri -->
+            <div class="category-section">
+                <div class="category-title">Self-Introduction (Perkenalan Diri)</div>
+                <div class="vocab-grid">
+                    <div class="vocab-card">
+                        <div class="vocab-english">Hello</div>
+                        <div class="vocab-indonesian">Halo</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="vocab-english">My name is</div>
+                        <div class="vocab-indonesian">Nama saya</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="vocab-english">I am ... years old</div>
+                        <div class="vocab-indonesian">Saya berusia ... tahun</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="vocab-english">I live in</div>
+                        <div class="vocab-indonesian">Saya tinggal di</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kategori Anggota Tubuh -->
+            <div class="category-section">
+                <div class="category-title">Body Parts (Anggota Tubuh)</div>
+                <div class="vocab-grid">
+                    <div class="vocab-card">
+                        <div class="vocab-english">Head</div>
+                        <div class="vocab-indonesian">Kepala</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="vocab-english">Eye</div>
+                        <div class="vocab-indonesian">Mata</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="vocab-english">Hand</div>
+                        <div class="vocab-indonesian">Tangan</div>
+                    </div>
+                    <div class="vocab-card">
+                        <div class="vocab-english">Foot</div>
+                        <div class="vocab-indonesian">Kaki</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Quiz -->
+        <div id="quiz" class="section">
+            <div class="quiz-container">
+                <h2 style="color: #2c3e50; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 700;">English Quiz</h2>
+                <div class="score">
+                    <p>Score: <span id="score">0</span> | Question: <span id="question-number">1</span>/<span id="total-question">10</span></p>
+                </div>
+                
+                <div id="quiz-content">
+                    <div class="question" id="question-text">Apa bahasa Inggris dari "Halo"?</div>
+                    <div class="options" id="options-container">
+                        <button class="option" onclick="selectAnswer(this, false)">
+                            <span class="option-text">Thank you</span>
+                        </button>
+                        <button class="option" onclick="selectAnswer(this, true)">
+                            <span class="option-text">Hello</span>
+                        </button>
+                        <button class="option" onclick="selectAnswer(this, false)">
+                            <span class="option-text">Good morning</span>
+                        </button>
+                        <button class="option" onclick="selectAnswer(this, false)">
+                            <span class="option-text">Goodbye</span>
+                        </button>
+                    </div>
+                    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question</button>
+                </div>
+
+                <div class="congratulations" id="congratulations">
+                    <h2>Congratulations!</h2>
+                    <p>You have completed the quiz!</p>
+                    <p id="final-score"></p>
+                    <button class="next-btn" style="display: inline-block;" onclick="restartQuiz()">Play Again</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Tips Belajar -->
+        <div id="facts" class="section">
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px; font-family: 'Poppins', sans-serif; font-weight: 700;">Tips Belajar Bahasa Inggris</h2>
+            
+            <div class="fun-fact">
+                <h3>Perkenalkan Diri</h3>
+                <p>Latihan mengucapkan "Hello, my name is..." di depan cermin setiap hari agar kamu percaya diri!</p>
+            </div>
+
+            <div class="fun-fact">
+                <h3>Tunjuk Anggota Tubuh</h3>
+                <p>Mainkan permainan "Simon Says" dengan teman menggunakan kata-kata seperti "Touch your head" atau "Point to your eyes".</p>
+            </div>
+
+            <div class="fun-fact">
+                <h3>Nyanyikan Lagu Sederhana</h3>
+                <p>Nyanyikan lagu seperti "Head, Shoulders, Knees, and Toes" untuk belajar anggota tubuh sambil bersenang-senang!</p>
+            </div>
+
+            <div class="fun-fact">
+                <h3>Ceritakan Dirimu</h3>
+                <p>Tulis 3 kalimat tentang dirimu dalam bahasa Inggris, seperti "I am 10 years old" atau "I live in Jakarta".</p>
+            </div>
+
+            <div class="fun-fact">
+                <h3>Mainkan Game Bahasa Inggris</h3>
+                <p>Coba game mencocokkan kata seperti "Head" dengan "Kepala" untuk membuat belajar lebih seru!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data quiz bahasa Inggris
+        const quizData = [
+            {
+                question: "Apa bahasa Inggris dari 'Halo'?",
+                options: [
+                    { text: "Thank you" },
+                    { text: "Hello" },
+                    { text: "Good morning" },
+                    { text: "Goodbye" }
+                ],
+                correct: 1
+            },
+            {
+                question: "Apa arti 'My name is'?",
+                options: [
+                    { text: "Nama saya" },
+                    { text: "Saya berusia" },
+                    { text: "Saya tinggal di" },
+                    { text: "Saya senang" }
+                ],
+                correct: 0
+            },
+            {
+                question: "What is this part of the body: the part you use to see?",
+                options: [
+                    { text: "Hand" },
+                    { text: "Eye" },
+                    { text: "Foot" },
+                    { text: "Head" }
+                ],
+                correct: 1
+            },
+            {
+                question: "Apa bahasa Inggris dari 'Tangan'?",
+                options: [
+                    { text: "Eye" },
+                    { text: "Hand" },
+                    { text: "Foot" },
+                    { text: "Head" }
+                ],
+                correct: 1
+            },
+            {
+                question: "What do you say to tell your age?",
+                options: [
+                    { text: "I live in" },
+                    { text: "My name is" },
+                    { text: "I am ... years old" },
+                    { text: "Hello" }
+                ],
+                correct: 2
+            },
+            {
+                question: "Apa arti 'Foot'?",
+                options: [
+                    { text: "Mata" },
+                    { text: "Tangan" },
+                    { text: "Kaki" },
+                    { text: "Kepala" }
+                ],
+                correct: 2
+            },
+            {
+                question: "How do you say where you live?",
+                options: [
+                    { text: "My name is" },
+                    { text: "I live in" },
+                    { text: "I am ... years old" },
+                    { text: "Hello" }
+                ],
+                correct: 1
+            },
+            {
+                question: "Apa bahasa Inggris dari 'Kepala'?",
+                options: [
+                    { text: "Hand" },
+                    { text: "Eye" },
+                    { text: "Foot" },
+                    { text: "Head" }
+                ],
+                correct: 3
+            },
+            {
+                question: "What is this part of the body: the part you use to write?",
+                options: [
+                    { text: "Eye" },
+                    { text: "Hand" },
+                    { text: "Foot" },
+                    { text: "Head" }
+                ],
+                correct: 1
+            },
+            {
+                question: "Apa arti 'Hello, I am ... years old'?",
+                options: [
+                    { text: "Halo, saya tinggal di" },
+                    { text: "Halo, nama saya" },
+                    { text: "Halo, saya berusia ... tahun" },
+                    { text: "Halo, saya senang" }
+                ],
+                correct: 2
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        function showSection(sectionName) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.getElementById(sectionName).classList.add('active');
+            
+            if (sectionName === 'quiz') {
+                restartQuiz();
+            }
+        }
+
+        function selectAnswer(button, isCorrect) {
+            if (answered) return;
+            
+            answered = true;
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+            
+            if (isCorrect) {
+                button.classList.add('correct');
+                score++;
+                document.getElementById('score').textContent = score;
+            } else {
+                button.classList.add('wrong');
+                options[quizData[currentQuestion].correct].classList.add('correct');
+            }
+            
+            document.getElementById('next-btn').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            
+            if (currentQuestion >= quizData.length) {
+                showResults();
+                return;
+            }
+            
+            answered = false;
+            loadQuestion();
+            document.getElementById('next-btn').style.display = 'none';
+        }
+
+        function loadQuestion() {
+            const question = quizData[currentQuestion];
+            
+            document.getElementById('question-text').textContent = question.question;
+            document.getElementById('question-number').textContent = currentQuestion + 1;
+            document.getElementById('total-question').textContent = quizData.length;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option';
+                button.innerHTML = `
+                    <span class="option-text">${option.text}</span>
+                `;
+                button.onclick = () => selectAnswer(button, index === question.correct);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function showResults() {
+            document.getElementById('quiz-content').style.display = 'none';
+            document.getElementById('congratulations').style.display = 'block';
+            
+            let message = '';
+            const percentage = Math.round((score / quizData.length) * 100);
+            
+            if (percentage >= 90) {
+                message = 'Excellent! You are amazing at English!';
+            } else if (percentage >= 70) {
+                message = 'Great job! Keep practicing!';
+            } else if (percentage >= 50) {
+                message = 'Good effort! You can do better!';
+            } else {
+                message = 'Keep studying! Practice makes perfect!';
+            }
+            
+            document.getElementById('final-score').innerHTML = 
+            `Final Score: ${score}/${quizData.length} (${percentage}%)<br>${message}`;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+            
+            document.getElementById('score').textContent = '0';
+            document.getElementById('quiz-content').style.display = 'block';
+            document.getElementById('congratulations').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'none';
+            
+            loadQuestion();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadQuestion();
+            
+            const vocabCards = document.querySelectorAll('.vocab-card');
+            vocabCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1.05)';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                        }, 100);
+                    }, 100);
+                    
+                    console.log('Vocabulary card clicked:', this.querySelector('.vocab-english').textContent);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
